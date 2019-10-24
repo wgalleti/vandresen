@@ -1,0 +1,4 @@
+SECRET_KEY=YOUR_SECRET
+DEBUG=True
+ALLOWED_HOSTS=*,
+DB_URL=postgres://user:pwd@host:5432/database
