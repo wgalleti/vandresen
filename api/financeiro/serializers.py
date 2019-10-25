@@ -19,6 +19,8 @@ class FornecedorSerializer(serializers.ModelSerializer):
 
 
 class MovimentoSerializer(serializers.ModelSerializer):
+    valor2 = serializers.DecimalField(max_digits=15, decimal_places=2, read_only=True)
+
     class Meta:
         model = Movimento
         fields = '__all__'

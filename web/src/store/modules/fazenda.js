@@ -6,11 +6,15 @@ const url = '/financeiro/fazendas/'
 export default {
   namespaced: true,
   state: {
-    lista: []
+    lista: [],
+    id: null
   },
   mutations: {
     SET_LISTA (state, payload) {
       state.lista = payload
+    },
+    SET_ID (state, payload = null) {
+      state.id = payload
     }
   },
   actions: {
