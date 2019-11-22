@@ -4,7 +4,7 @@ export default {
       return {
         showValidationSummary: true,
         labelLocation: 'top',
-        colCount: 5,
+        colCount: 6,
         items: [
           {
             colSpan: 1,
@@ -34,6 +34,10 @@ export default {
           },
           {
             colSpan: 1,
+            dataField: 'documento'
+          },
+          {
+            colSpan: 1,
             dataField: 'valor',
             validationRules: [
               { type: 'required', message: 'O Valor é obrigatório' }
@@ -44,7 +48,7 @@ export default {
             }
           },
           {
-            colSpan: 4,
+            colSpan: 5,
             dataField: 'descricao',
             validationRules: [
               { type: 'required', message: 'A Descrição é obrigatório' }

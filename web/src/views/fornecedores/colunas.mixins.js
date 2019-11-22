@@ -28,7 +28,10 @@ export default {
         },
         'endereco',
         'telefone',
-        'email'
+        'email',
+        'banco',
+        'agencia',
+        'conta'
       ]
     }
   }

@@ -32,6 +32,10 @@ export default {
           format: { type: 'fixedPoint', precision: 2 }
         },
         {
+          dataField: 'documento',
+          width: 100
+        },
+        {
           dataField: 'valor2',
           dataType: 'number',
           format: { type: 'fixedPoint', precision: 2 }

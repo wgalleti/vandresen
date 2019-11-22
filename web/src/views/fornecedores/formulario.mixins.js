@@ -29,7 +29,20 @@ export default {
           {
             dataField: 'endereco',
             colSpan: 3
+          },
+          {
+            dataField: 'banco',
+            colSpan: 1
+          },
+          {
+            dataField: 'agencia',
+            colSpan: 1
+          },
+          {
+            dataField: 'conta',
+            colSpan: 1
           }
+
         ]
       }
     }

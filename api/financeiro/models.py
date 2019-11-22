@@ -36,6 +36,21 @@ class Fornecedor(models.Model):
         null=True,
         blank=True
     )
+    banco = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True
+    )
+    agencia = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True
+    )
+    conta = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.nome
@@ -65,6 +80,11 @@ class Movimento(models.Model):
         default=0
     )
     descricao = models.TextField()
+    documento = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True
+    )
     tipo = models.CharField(
         max_length=20,
         choices=TIPOS,
