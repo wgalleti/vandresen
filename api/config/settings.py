@@ -101,5 +101,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+STATIC_PATH = config('STATIC_PATH', default='static')
+MEDIA_PATH = config('MEDIA_PATH', default='media')
+
+STATIC_URL = f'/{STATIC_PATH}/'
+STATIC_ROOT = os.path.join(BASE_DIR, STATIC_PATH)
+
+MEDIA_URL = f'/{MEDIA_PATH}/'
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_PATH)
+
