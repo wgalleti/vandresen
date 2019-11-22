@@ -3,7 +3,7 @@ import axios from 'axios'
 import store from '@/store'
 
 let config = {
-  baseURL: process.env.VUE_APP_BASE_URL || 'http://localhost:8000'
+  baseURL: process.env.VUE_APP_BASE_URL || 'https://vandresen2.wgalleti.io'
 }
 
 const _axios = axios.create(config)
