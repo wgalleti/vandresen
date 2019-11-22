@@ -36,7 +36,8 @@ export default {
       menus: [
         { to: 'fazendas', title: 'Fazendas' },
         { to: 'fornecedores', title: 'Fornecedores' },
-        { to: 'movimentos', title: 'Movimentos' }
+        { to: 'movimentos', title: 'Movimentos' },
+        { to: 'contaspagar', title: 'Contas a Pagar' }
       ]
     }
   }

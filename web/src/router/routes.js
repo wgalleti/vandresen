@@ -22,6 +22,11 @@ export default [
     component: () => import('@/views/movimentos/Index.vue')
   },
   {
+    path: '/contaspagar',
+    name: 'contaspagar',
+    component: () => import('@/views/contaspagar/Index.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/Index.vue'),

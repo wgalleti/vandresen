@@ -105,3 +105,30 @@ class Movimento(models.Model):
 
     def __str__(self):
         return f'{self.pk}'
+
+
+class ContasPagar(models.Model):
+    fazenda = models.ForeignKey(
+        to='financeiro.Fazenda',
+        on_delete=models.DO_NOTHING
+    )
+    fornecedor = models.ForeignKey(
+        to='financeiro.Fornecedor',
+        on_delete=models.DO_NOTHING
+    )
+    documento = models.CharField(
+        max_length=50
+    )
+    data_entrega = models.DateField()
+    data_pagamento = models.DateField()
+    descricao = models.CharField(
+        max_length=100
+    )
+    valor = models.DecimalField(
+        max_digits=15,
+        decimal_places=2
+    )
+    observacao = models.TextField(
+        null=True,
+        blank=True
+    )

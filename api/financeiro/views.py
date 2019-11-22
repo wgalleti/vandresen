@@ -6,12 +6,12 @@ from financeiro.models import (
     Fazenda,
     Fornecedor,
     Movimento,
-)
+    ContasPagar)
 from financeiro.serializers import (
     FazendaSerializer,
     FornecedorSerializer,
     MovimentoSerializer,
-)
+    ContasPagarSerializer)
 
 
 class FazendaViewSet(viewsets.ModelViewSet):
@@ -75,3 +75,8 @@ class MovimentoViewSet(viewsets.ModelViewSet):
     def tipos(self, request, pk=None):
         tipos = [dict(id=s[0], nome=s[1].replace('_', ' ').title()) for s in Movimento.TIPOS]
         return Response(tipos)
+
+
+class ContasPagarViewSet(viewsets.ModelViewSet):
+    queryset = ContasPagar.objects.all().order_by('pk')
+    serializer_class = ContasPagarSerializer
