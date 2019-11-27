@@ -15,7 +15,7 @@ export default {
           }
         },
         {
-          dataField: 'fornecedor',
+          dataField: 'cliente',
           lookup: {
             dataSource: this.$store.state.fornecedor.lista,
             displayExpr: 'nome',
@@ -30,7 +30,7 @@ export default {
           dataType: 'date'
         },
         {
-          dataField: 'data_pagamento',
+          dataField: 'data_recebimento',
           dataType: 'date'
         },
         {
@@ -45,7 +45,7 @@ export default {
           }
         },
         {
-          dataField: 'pago',
+          dataField: 'recebido',
           dataType: 'boolean'
         },
         {

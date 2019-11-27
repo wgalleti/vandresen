@@ -98,6 +98,9 @@ class Movimento(models.Model):
     )
     criado_em = models.DateTimeField(auto_now_add=True)
     editado_em = models.DateTimeField(auto_now=True)
+    baixado = models.BooleanField(
+        default=False
+    )
 
     @property
     def valor2(self):
@@ -131,4 +134,37 @@ class ContasPagar(models.Model):
     observacao = models.TextField(
         null=True,
         blank=True
+    )
+    pago = models.BooleanField(
+        default=False
+    )
+
+
+class ContasReceber(models.Model):
+    fazenda = models.ForeignKey(
+        to='financeiro.Fazenda',
+        on_delete=models.DO_NOTHING
+    )
+    cliente = models.ForeignKey(
+        to='financeiro.Fornecedor',
+        on_delete=models.DO_NOTHING
+    )
+    documento = models.CharField(
+        max_length=50
+    )
+    data_entrega = models.DateField()
+    data_recebimento = models.DateField()
+    descricao = models.CharField(
+        max_length=100
+    )
+    valor = models.DecimalField(
+        max_digits=15,
+        decimal_places=2
+    )
+    observacao = models.TextField(
+        null=True,
+        blank=True
+    )
+    recebido = models.BooleanField(
+        default=False
     )

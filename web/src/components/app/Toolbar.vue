@@ -37,7 +37,8 @@ export default {
         { to: 'fazendas', title: 'Fazendas' },
         { to: 'fornecedores', title: 'Fornecedores' },
         { to: 'movimentos', title: 'Movimentos' },
-        { to: 'contaspagar', title: 'Contas a Pagar' }
+        { to: 'contaspagar', title: 'Contas a Pagar' },
+        { to: 'contasreceber', title: 'Contas a Receber' }
       ]
     }
   }

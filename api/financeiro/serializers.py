@@ -3,7 +3,9 @@ from financeiro.models import (
     Fazenda,
     Fornecedor,
     Movimento,
-    ContasPagar)
+    ContasPagar,
+    ContasReceber,
+)
 
 
 class FazendaSerializer(serializers.ModelSerializer):
@@ -29,4 +31,10 @@ class MovimentoSerializer(serializers.ModelSerializer):
 class ContasPagarSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContasPagar
+        fields = '__all__'
+
+
+class ContasReceberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContasReceber
         fields = '__all__'

@@ -6,12 +6,16 @@ from financeiro.models import (
     Fazenda,
     Fornecedor,
     Movimento,
-    ContasPagar)
+    ContasPagar,
+    ContasReceber,
+)
 from financeiro.serializers import (
     FazendaSerializer,
     FornecedorSerializer,
     MovimentoSerializer,
-    ContasPagarSerializer)
+    ContasPagarSerializer,
+    ContasReceberSerializer,
+)
 
 
 class FazendaViewSet(viewsets.ModelViewSet):
@@ -80,3 +84,8 @@ class MovimentoViewSet(viewsets.ModelViewSet):
 class ContasPagarViewSet(viewsets.ModelViewSet):
     queryset = ContasPagar.objects.all().order_by('pk')
     serializer_class = ContasPagarSerializer
+
+
+class ContasReceberViewSet(viewsets.ModelViewSet):
+    queryset = ContasReceber.objects.all().order_by('pk')
+    serializer_class = ContasReceberSerializer

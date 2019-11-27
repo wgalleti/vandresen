@@ -27,6 +27,11 @@ export default [
     component: () => import('@/views/contaspagar/Index.vue')
   },
   {
+    path: '/contasreceber',
+    name: 'contasreceber',
+    component: () => import('@/views/contasreceber/Index.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/Index.vue'),

@@ -50,6 +50,11 @@ export default {
             displayExpr: 'nome',
             valueExpr: 'id'
           }
+        },
+        {
+          dataField: 'baixado',
+          caption: 'Pago/Recebido',
+          dataType: 'boolean'
         }
       ]
     }

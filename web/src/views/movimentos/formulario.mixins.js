@@ -54,13 +54,16 @@ export default {
               { type: 'required', message: 'A Descrição é obrigatório' }
             ]
           },
-
           {
             colSpan: 1,
             dataField: 'tipo',
             validationRules: [
               { type: 'required', message: 'O Tipo é obrigatório' }
             ]
+          },
+          {
+            colSpan: 1,
+            dataField: 'baixado'
           }
         ]
       }

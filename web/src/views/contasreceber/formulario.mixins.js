@@ -15,9 +15,9 @@ export default {
           },
           {
             colSpan: 2,
-            dataField: 'fornecedor',
+            dataField: 'cliente',
             validationRules: [
-              { type: 'required', message: 'O Fornecedor é obrigatório' }
+              { type: 'required', message: 'O Cliente é obrigatório' }
             ]
           },
           {
@@ -43,12 +43,12 @@ export default {
           },
           {
             colSpan: 1,
-            dataField: 'data_pagamento',
+            dataField: 'data_recebimento',
             editorOptions: {
               dateSerializationFormat: 'yyyy-MM-dd'
             },
             validationRules: [
-              { type: 'required', message: 'A Data de pagamento é obrigatório' }
+              { type: 'required', message: 'A Data de recebimento é obrigatório' }
             ]
           },
           {
@@ -68,7 +68,7 @@ export default {
           },
           {
             colSpan: 1,
-            dataField: 'pago'
+            dataField: 'recebido'
           }
         ]
       }
