@@ -2,9 +2,9 @@
   <v-app-bar
     :clipped-left="$vuetify.breakpoint.lgAndUp"
     app
-    color="grey lighten-2"
+    color="#347474"
     flat
-    light
+    dark
     v-if="$store.getters['auth/isLogged']"
   >
     <v-toolbar-title class="mr-4 pl-4">
@@ -14,8 +14,8 @@
       <v-icon>mdi-home</v-icon>
     </v-btn>
     <v-btn
+      dark
       text
-      color="grey darken-3"
       v-for="menu in menus"
       :key="menu.to"
       :to="menu.to"

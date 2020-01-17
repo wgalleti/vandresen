@@ -3,41 +3,21 @@
     <v-col>
       <dx-data-grid
         ref="grid"
-        :data-source="dados"
-        :columns="colunas"
-        :show-borders="true"
-        :selection="{ mode: 'single' }"
-        :column-auto-width="true"
-        :on-toolbar-preparing="loadTollbarPreparing"
+        v-bind="gridOptions"
         @selection-changed="onSelectionChanged"
       >
-        <dx-search-panel
-          :visible="true"
-          :width="400"
-          placeholder="Pesquisar..."
-        />
-        <dx-editing
-          :allow-updating="true"
-          :allow-deleting="true"
-          :allow-adding="true"
-          :use-icons="true"
-          :form="formulario"
-          mode="form"
-        />
       </dx-data-grid>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import { DxDataGrid, DxEditing, DxSearchPanel } from 'devextreme-vue/data-grid'
+import { DxDataGrid } from 'devextreme-vue/data-grid'
 import CustomStore from 'devextreme/data/custom_store'
 import { parserHttpError } from '@/utils/axios'
 export default {
   components: {
-    DxDataGrid,
-    DxEditing,
-    DxSearchPanel
+    DxDataGrid
   },
   props: {
     url: String,
@@ -95,6 +75,54 @@ export default {
           }
         }
       })
+    }
+  },
+  computed: {
+    gridOptions () {
+      return {
+        dataSource: this.dados,
+        columns: this.colunas,
+        showBorders: true,
+        selection: { mode: 'single' },
+        columnAutoWidth: true,
+        onToolbarPreparing: this.loadTollbarPreparing,
+        height: 520,
+        columnFixing: {
+          enabled: true
+        },
+        rowAlternationEnabled: true,
+        loadPanel: {
+          enabled: true,
+          shading: true,
+          shadingColor: 'rgba(0,0,0,0.5)'
+        },
+        pager: {
+          allowedPageSizes: [5, 10, 15],
+          showPageSizeSelector: true,
+          showInfo: true
+        },
+        paging: {
+          pageSize: 10
+        },
+        searchPanel: {
+          visible: true,
+          width: '400',
+          placeholder: 'Pesquisar...'
+        },
+        editing: {
+          allowUpdating: true,
+          allowDeleting: true,
+          allowAdding: true,
+          useIcons: true,
+          form: this.formulario,
+          mode: 'popup',
+          popup: {
+            height: 'auto',
+            width: '70%',
+            shadingColor: 'rgba(0,0,0,0.5)'
+          }
+        }
+      }
     }
   },
   methods: {

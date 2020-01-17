@@ -1,10 +1,11 @@
 <template>
   <div class="home">
     <v-row>
-      <v-toolbar flat color="green darken-3" dark>
+      <v-toolbar flat color="#35495e" dark>
         <v-toolbar-title>Dashboard</v-toolbar-title>
         <v-spacer/>
         <v-select
+          class="selector-fazenda"
           solo-inverted
           dark
           label="Fazenda"
@@ -12,7 +13,7 @@
           :items="$store.state.fazenda.lista"
           item-text="nome"
           item-value="id"
-          style="max-width: 150px;"
+          style="max-width: 300px;"
           @change="loadData"
           hide-details
         ></v-select>

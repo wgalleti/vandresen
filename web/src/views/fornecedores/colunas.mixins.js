@@ -14,17 +14,11 @@ export default {
         },
         {
           dataField: 'rg_ie',
-          caption: 'RG/Inscrição Estadual',
-          validationRules: [
-            { type: 'required', message: 'O RG/Inscrição Estadual é obrigatório' }
-          ]
+          caption: 'RG/Inscrição Estadual'
         },
         {
           dataField: 'cpf_cnpj',
-          caption: 'CPF/CNPJ',
-          validationRules: [
-            { type: 'required', message: 'O CPF/CNPJ é obrigatório' }
-          ]
+          caption: 'CPF/CNPJ'
         },
         'endereco',
         'telefone',
