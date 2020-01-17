@@ -68,6 +68,39 @@ class MovimentoViewSet(viewsets.ModelViewSet):
     filter_fields = ('fazenda', 'fornecedor')
 
     @action(methods=['get'], detail=False)
+    def pivot(self, request, pk=None):
+        def _parser(data):
+            def _change_titles(item):
+                converte = {
+                    'fazenda__nome': 'fazenda',
+                    'fornecedor__nome': 'fornecedor',
+                    'cliente__nome': 'fornecedor',
+                    'baixado': 'pago',
+                    'recebido': 'pago',
+                    'data_entrega': 'data'
+                }
+                return {
+                    converte.get(i[0], i[0]): i[1].title() if isinstance(i[1], str) else i[1]
+                    for i in item.items()
+                }
+            def _convert_value(item):
+                valor = item.get('valor', 0)
+                tipo = 1 if item.get('Tipo') == 'Credito' else -1
+
+                return {**item, 'valor': valor * tipo}
+
+            return [_convert_value(_change_titles(d)) for d in data]
+
+
+        movimentos = _parser(Movimento.objects.all().values('fazenda__nome', 'fornecedor__nome', 'data', 'tipo', 'baixado', 'valor'))
+        contas_pagar = [{**c, 'tipo': Movimento.DEBITO } for c in ContasPagar.objects.all().values('fazenda__nome', 'fornecedor__nome', 'data_entrega', 'pago', 'valor')]
+        contas_pagar = _parser(contas_pagar)
+        contas_receber = [{**c, 'tipo': Movimento.CREDITO } for c in ContasReceber.objects.all().values('fazenda__nome', 'cliente__nome', 'data_entrega', 'recebido', 'valor')]
+        contas_receber = _parser(contas_receber)
+
+        return  Response([*movimentos, *contas_pagar, *contas_receber])
+
+    @action(methods=['get'], detail=False)
     def fornecedor(self, request, pk=None):
         fornecedor = request.query_params.get('fornecedor')
         qs = self.get_queryset()

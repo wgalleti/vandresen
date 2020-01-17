@@ -39,6 +39,11 @@
           :summary="summaryFornecedor"/>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <pivot />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -47,6 +52,9 @@ import colunas from '@/views/movimentos/colunas.mixins'
 import summary from '@/views/dashboard/summary.mixins'
 
 export default {
+  components: {
+    Pivot: () => import('./pivot/index.vue')
+  },
   mixins: [
     colunas,
     summary
