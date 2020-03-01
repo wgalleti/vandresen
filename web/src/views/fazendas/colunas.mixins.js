@@ -4,13 +4,16 @@ export default {
       return [
         {
           dataField: 'id',
-          caption: '#'
+          caption: '#',
+          fixed: true,
+          width: 50
         },
         {
           dataField: 'nome',
           validationRules: [
             { type: 'required', message: 'O nome é obrigatório' }
-          ]
+          ],
+          fixed: true
         },
         {
           dataField: 'cpf_cnpj',

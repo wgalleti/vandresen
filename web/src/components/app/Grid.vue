@@ -15,6 +15,7 @@
 import { DxDataGrid } from 'devextreme-vue/data-grid'
 import CustomStore from 'devextreme/data/custom_store'
 import { parserHttpError } from '@/utils/axios'
+
 export default {
   components: {
     DxDataGrid
@@ -86,7 +87,10 @@ export default {
         selection: { mode: 'single' },
         columnAutoWidth: true,
         onToolbarPreparing: this.loadTollbarPreparing,
-        height: 520,
+        height: '87vh',
+        scrolling: {
+          mode: 'infinite'
+        },
         columnFixing: {
           enabled: true
         },
@@ -121,6 +125,19 @@ export default {
             width: '70%',
             shadingColor: 'rgba(0,0,0,0.5)'
           }
+        },
+        summary: {
+          totalItems: [
+            {
+              alignment: 'right',
+              column: 'id',
+              showInColumn: 'id',
+              summaryType: 'count',
+              customizeText: e => {
+                return e.value
+              }
+            }
+          ]
         }
       }
     }

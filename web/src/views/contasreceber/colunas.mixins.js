@@ -3,7 +3,10 @@ export default {
     colunas () {
       return [
         {
-          dataField: 'id'
+          dataField: 'id',
+          caption: '#',
+          width: 50,
+          fixed: true
         },
         {
           dataField: 'fazenda',
@@ -11,8 +14,8 @@ export default {
             dataSource: this.$store.state.fazenda.lista,
             displayExpr: 'nome',
             valueExpr: 'id'
-
-          }
+          },
+          fixed: true
         },
         {
           dataField: 'cliente',
@@ -20,7 +23,8 @@ export default {
             dataSource: this.$store.state.fornecedor.lista,
             displayExpr: 'nome',
             valueExpr: 'id'
-          }
+          },
+          fixed: true
         },
         {
           dataField: 'documento'

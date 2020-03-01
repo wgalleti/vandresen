@@ -4,13 +4,16 @@ export default {
       return [
         {
           dataField: 'id',
-          caption: '#'
+          caption: '#',
+          width: 50,
+          fixed: true
         },
         {
           dataField: 'nome',
           validationRules: [
             { type: 'required', message: 'O nome é obrigatório' }
-          ]
+          ],
+          fixed: true
         },
         {
           dataField: 'rg_ie',
