@@ -1,3 +1,7 @@
+from dbbackup import utils
+from dbbackup.db.base import get_connector
+from django.http import HttpResponse
+from django.utils.encoding import smart_str
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -21,6 +25,22 @@ from financeiro.serializers import (
 class FazendaViewSet(viewsets.ModelViewSet):
     queryset = Fazenda.objects.all().order_by('pk')
     serializer_class = FazendaSerializer
+
+    @action(methods=['get'], detail=False)
+    def backup(self, request, pk=None):
+        connector = get_connector('default')
+        filename = connector.generate_filename()
+        outputfile = connector.create_dump()
+        compressed_file, filename = utils.compress_file(outputfile, filename)
+        outputfile = compressed_file
+        outputfile.seek(0)
+        response = HttpResponse(
+            outputfile.read(),
+            content_type="application/x-gzip"
+        )
+        response['Content-Disposition'] = f'attachment; filename={filename}'
+        response['X-Sendfile'] = smart_str(outputfile.read())
+        return response
 
 
 class FornecedorViewSet(viewsets.ModelViewSet):
@@ -83,6 +103,7 @@ class MovimentoViewSet(viewsets.ModelViewSet):
                     converte.get(i[0], i[0]): i[1].title() if isinstance(i[1], str) else i[1]
                     for i in item.items()
                 }
+
             def _convert_value(item):
                 valor = item.get('valor', 0)
                 tipo = 1 if item.get('Tipo') == 'Credito' else -1
@@ -91,14 +112,18 @@ class MovimentoViewSet(viewsets.ModelViewSet):
 
             return [_convert_value(_change_titles(d)) for d in data]
 
-
-        movimentos = _parser(Movimento.objects.all().values('fazenda__nome', 'fornecedor__nome', 'data', 'tipo', 'baixado', 'valor'))
-        contas_pagar = [{**c, 'tipo': Movimento.DEBITO } for c in ContasPagar.objects.all().values('fazenda__nome', 'fornecedor__nome', 'data_entrega', 'pago', 'valor')]
+        movimentos = _parser(
+            Movimento.objects.all().values('fazenda__nome', 'fornecedor__nome', 'data', 'tipo', 'baixado', 'valor'))
+        contas_pagar = [{**c, 'tipo': Movimento.DEBITO} for c in
+                        ContasPagar.objects.all().values('fazenda__nome', 'fornecedor__nome', 'data_entrega', 'pago',
+                                                         'valor')]
         contas_pagar = _parser(contas_pagar)
-        contas_receber = [{**c, 'tipo': Movimento.CREDITO } for c in ContasReceber.objects.all().values('fazenda__nome', 'cliente__nome', 'data_entrega', 'recebido', 'valor')]
+        contas_receber = [{**c, 'tipo': Movimento.CREDITO} for c in
+                          ContasReceber.objects.all().values('fazenda__nome', 'cliente__nome', 'data_entrega',
+                                                             'recebido', 'valor')]
         contas_receber = _parser(contas_receber)
 
-        return  Response([*movimentos, *contas_pagar, *contas_receber])
+        return Response([*movimentos, *contas_pagar, *contas_receber])
 
     @action(methods=['get'], detail=False)
     def fornecedor(self, request, pk=None):
