@@ -29,6 +29,7 @@ THIRD_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+    'dbbackup_ui'
 ]
 
 LOCAL_APPS = [
